@@ -1,50 +1,72 @@
-# Welcome to your Expo app 👋
+# 📱 E-Commerce App (React Native + Expo)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Proyecto tipo Amazon, con navegación avanzada (Tabs + Drawer + Stack), carrito, detalle de productos y checkout.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Fase 1 — Setup & Data
 
-   ```bash
-   npm install
-   ```
+### ✔️ Configuración Inicial
+1. Crear proyecto:
+npx create-expo-app ecommerce-app --template tabs@49
 
-2. Start the app
+markdown
+Copiar código
 
-   ```bash
-   npx expo start
-   ```
+2. Instalar TypeScript:
+npm install --save-dev typescript @types/react @types/react-native
 
-In the output, you'll find options to open the app in a
+markdown
+Copiar código
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+3. Ejecutar:
+npm run start
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+yaml
+Copiar código
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📂 Estructura creada
 
-```bash
-npm run reset-project
-```
+src/
+├── data/
+├── types/
+├── utils/
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+yaml
+Copiar código
 
-## Learn more
+Incluye:
+- Mock de productos
+- Mock de categorías
+- Mock de reviews
+- Datos del usuario
+- Tipos globales
+- Formatters
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 📱 Ejecutar en iPhone
 
-## Join the community
+### Con Expo Go:
+1. Instala **Expo Go** en tu iPhone.
+2. Conéctate a la misma red WiFi.
+3. Ejecuta:
+npm start
 
-Join our community of developers creating universal apps.
+graphql
+Copiar código
+4. Escanea el código QR con el iPhone.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Con simulador iOS (Mac):
+npm run ios
+
+yaml
+Copiar código
+
+---
+
+## 📤 Subir a GitHub (repositorio NO enlazado)
+
+1. Inicializa:
