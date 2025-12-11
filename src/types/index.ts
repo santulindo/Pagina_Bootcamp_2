@@ -1,29 +1,25 @@
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-  description: string;
-}
-
-export interface Category {
-  id: string;
-  name: string;
-  icon: string;
-}
-
-export interface Review {
+// src/types/index.ts
+export type Review = {
   id: string;
   productId: string;
-  user: string;
-  rating: number;
-  comment: string;
-}
+  userId: string;
+  rating: number; // 1..5
+  comment?: string;
+  createdAt?: string;
+};
 
-export interface User {
+export type Product = {
+  id: string;
+  title: string;
+  price: number;
+  categoryId: string;
+  image?: string;
+  description?: string;
+};
+
+export type User = {
   id: string;
   name: string;
   email: string;
-  avatar: string;
-}
+  avatar?: string;
+};
