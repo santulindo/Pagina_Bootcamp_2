@@ -1,64 +1,36 @@
-// src/components/CustomDrawer.tsx
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
-import { colors } from '../utils/colors';
-import { categories } from '../data/categories';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { DrawerContentScrollView } from "@react-navigation/drawer";
 
 
-const CustomDrawer = (props: DrawerContentComponentProps) => {
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          source={{ uri: 'https://i.pravatar.cc/100' }}
-          style={styles.avatar}
-        />
-        <Text style={styles.name}>John Doe</Text>
-      </View>
+export default function CustomDrawer(props: any) {
+return (
+<DrawerContentScrollView {...props}>
+<View style={styles.container}>
+<Text style={styles.header}>Menu</Text>
 
-      <Text style={styles.title}>Categories</Text>
 
-      {categories.map((cat) => (
-        <TouchableOpacity
-          key={cat.id}
-          style={styles.item}
-          onPress={() => {
-            props.navigation.navigate('Category', { categoryId: cat.id });
-            props.navigation.closeDrawer();
-          }}
-        >
-          <Text style={styles.itemText}>{cat.name}</Text>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  );
-};
+<TouchableOpacity style={styles.item} onPress={() => props.navigation.navigate("HomeStack")}>
+<Text>Home</Text>
+</TouchableOpacity>
+
+
+<TouchableOpacity style={styles.item} onPress={() => props.navigation.navigate("CartStack")}>
+<Text>Cart</Text>
+</TouchableOpacity>
+
+
+<TouchableOpacity style={styles.item} onPress={() => props.navigation.navigate("ProfileStack")}>
+<Text>Profile</Text>
+</TouchableOpacity>
+</View>
+</DrawerContentScrollView>
+);
+}
+
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.white },
-  header: {
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: colors.light,
-  },
-  avatar: { width: 80, height: 80, borderRadius: 40 },
-  name: { marginTop: 10, fontSize: 18, fontWeight: '700' },
-  title: { marginTop: 20, marginLeft: 20, fontSize: 18, fontWeight: '600' },
-  item: {
-    padding: 15,
-    marginTop: 5,
-    borderBottomWidth: 0.3,
-    borderColor: colors.light,
-  },
-  itemText: { fontSize: 16 },
+container: { flex: 1, padding: 20 },
+header: { fontSize: 20, fontWeight: "bold", marginBottom: 20 },
+item: { paddingVertical: 12 },
 });
-
-export default CustomDrawer;
