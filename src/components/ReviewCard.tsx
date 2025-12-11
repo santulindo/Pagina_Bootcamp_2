@@ -1,40 +1,39 @@
-// src/components/ReviewCard.tsx
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import type { Review } from '../types';
-import { colors } from '../utils/colors';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, StyleSheet } from "react-native";
 
-interface Props {
+type Review = {
+  id: string | number;
+  productId: string | number;
+  user: string;
+  rating: number;
+  comment: string;
+};
+
+type Props = {
   review: Review;
-}
+};
 
-const ReviewCard: React.FC<Props> = ({ review }) => {
+export default function ReviewCard({ review }: Props) {
   return (
     <View style={styles.card}>
-      <View style={styles.header}>
-        <Ionicons name="person-circle-outline" size={28} />
-        <Text style={styles.user}>{review.userId}</Text>
-      </View>
+      <Text style={styles.user}>{review.user}</Text>
       <Text style={styles.rating}>Rating: {review.rating} / 5</Text>
-      {review.comment ? <Text style={styles.comment}>{review.comment}</Text> : null}
+      <Text style={styles.comment}>{review.comment}</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.white,
-    padding: 12,
     borderRadius: 8,
-    shadowRadius: 4,
-    shadowOpacity: 0.1,
-    marginBottom: 10,
+    padding: 12,
+    backgroundColor: "#fff",
+    marginBottom: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
   },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  user: { fontWeight: '600', marginLeft: 8 },
-  rating: { marginTop: 6, color: colors.dark },
-  comment: { marginTop: 4, color: colors.dark },
+  user: { fontWeight: "700", marginBottom: 4 },
+  rating: { color: "#444", marginBottom: 6 },
+  comment: { color: "#333" },
 });
-
-export default ReviewCard;

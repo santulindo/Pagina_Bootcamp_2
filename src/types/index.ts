@@ -8,14 +8,14 @@ export type Review = {
   createdAt?: string;
 };
 
-export type Product = {
+export interface Product {
   id: string;
-  title: string;
+  name: string;
+  description: string;
+  image: string;
   price: number;
-  categoryId: string;
-  image?: string;
-  description?: string;
-};
+  category: string;
+}
 
 export type User = {
   id: string;
