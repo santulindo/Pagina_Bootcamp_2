@@ -1,91 +1,72 @@
-// src/components/CartItem.tsx
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { CartItemType } from '../types';
-import { colors } from '../utils/colors';
+import React from "react";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { CartItem as ItemType } from "../context/CartContext";
 
-interface Props {
-  item: CartItemType;
-  onIncrease: () => void;
-  onDecrease: () => void;
+type Props = {
+  item: ItemType;
   onRemove: () => void;
-}
+  onChangeQty: (qty: number) => void;
+};
 
-const CartItem = ({ item, onIncrease, onDecrease, onRemove }: Props) => {
+export default function CartItem({ item, onRemove, onChangeQty }: Props) {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: item.product.image }} style={styles.image} />
+      {item.image && (
+        <Image source={{ uri: item.image }} style={styles.image} />
+      )}
 
-      <View style={styles.info}>
-        <Text style={styles.title}>{item.product.title}</Text>
-        <Text style={styles.price}>${item.product.price.toFixed(2)}</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.price}>${item.price}</Text>
 
+        {/* Quantity Controls */}
         <View style={styles.row}>
-          <TouchableOpacity style={styles.btn} onPress={onDecrease}>
-            <Text style={styles.btnText}>-</Text>
+          <TouchableOpacity
+            style={styles.qtyBtn}
+            onPress={() => onChangeQty(item.quantity - 1)}
+          >
+            <Text>-</Text>
           </TouchableOpacity>
 
           <Text style={styles.qty}>{item.quantity}</Text>
 
-          <TouchableOpacity style={styles.btn} onPress={onIncrease}>
-            <Text style={styles.btnText}>+</Text>
+          <TouchableOpacity
+            style={styles.qtyBtn}
+            onPress={() => onChangeQty(item.quantity + 1)}
+          >
+            <Text>+</Text>
           </TouchableOpacity>
         </View>
       </View>
 
       <TouchableOpacity onPress={onRemove}>
-        <Text style={styles.remove}>X</Text>
+        <Text style={styles.remove}>Remove</Text>
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    backgroundColor: colors.white,
+    flexDirection: "row",
     padding: 12,
-    borderRadius: 12,
-    marginBottom: 12,
-    elevation: 3,
-    alignItems: 'center',
-  },
-  image: {
-    width: 75,
-    height: 75,
-  },
-  info: {
-    flex: 1,
-    marginLeft: 12,
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  price: {
-    fontSize: 14,
-    color: colors.primary,
-    marginVertical: 4,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  btn: {
-    width: 28,
-    height: 28,
+    backgroundColor: "#fff",
     borderRadius: 8,
-    backgroundColor: colors.light,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginBottom: 12,
+    alignItems: "center",
+    gap: 10,
   },
-  btnText: { fontSize: 20 },
-  qty: { marginHorizontal: 10, fontSize: 16 },
-  remove: {
-    fontSize: 22,
-    color: colors.danger,
-    marginLeft: 10,
+  image: { width: 80, height: 80, borderRadius: 10 },
+  title: { fontWeight: "700" },
+  price: { color: "#444", marginBottom: 6 },
+  row: { flexDirection: "row", alignItems: "center" },
+  qtyBtn: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderWidth: 1,
+    borderRadius: 6,
+    marginHorizontal: 6,
   },
+  qty: { fontWeight: "bold" },
+  remove: { color: "red", fontWeight: "600" },
 });
-
-export default CartItem;
